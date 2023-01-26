@@ -1,5 +1,6 @@
 package ru.chursinov.meetingTelegramBot.bot.handler.message;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.meta.api.methods.BotApiMethod;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
@@ -18,6 +19,7 @@ public class ShowProfileHandler implements MessageHandler {
     private final GetCurrentDate getCurrentDate;
     private final ResetCondition resetCondition;
 
+    @Autowired
     public ShowProfileHandler(UsersProfileDataService usersProfileDataService, GetCurrentDate getCurrentDate, ResetCondition resetCondition) {
         this.usersProfileDataService = usersProfileDataService;
         this.getCurrentDate = getCurrentDate;

@@ -18,21 +18,13 @@ import java.util.function.Function;
 @Service
 public class TelegramUpdateService implements TelegramUpdateExtractor{
 
-    public boolean hasTextMessage(Update update) {
-        return (update.hasMessage());
-    }
-
-    public boolean hasCallbackQuery(Update update) {
-        return (update.hasCallbackQuery());
-    }
-
     private <T> T getUpdateAttribute(Update update,
                                      Function<Message, T> messageFunc,
                                      Function<CallbackQuery, T> callbackQueryFunc)  {
-        if (hasTextMessage(update)) {
+        if (update.hasMessage()) {
             return messageFunc.apply(update.getMessage());
         }
-        else if (hasCallbackQuery(update)) {
+        else if (update.hasCallbackQuery()) {
             return callbackQueryFunc.apply(update.getCallbackQuery());
         }
         else {

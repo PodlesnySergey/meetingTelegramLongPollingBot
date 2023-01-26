@@ -1,6 +1,7 @@
 package ru.chursinov.meetingTelegramBot.bot;
 
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.meta.api.methods.PartialBotApiMethod;
 import org.telegram.telegrambots.meta.api.objects.CallbackQuery;
@@ -17,13 +18,11 @@ import java.io.Serializable;
 public class UpdateReceiver {
 
     private final BotConditionHandler botConditionHandler;
-
     private final BotConditionUserContext botConditionUserContext;
-
     private final QueryHandler callbackQueryHandler;
-
     private final ReplyMessageService replyMessageService;
 
+    @Autowired
     public UpdateReceiver(BotConditionHandler botConditionHandler, BotConditionUserContext botConditionUserContext, QueryHandler callbackQueryHandler, ReplyMessageService replyMessageService) {
         this.botConditionHandler = botConditionHandler;
         this.botConditionUserContext = botConditionUserContext;
