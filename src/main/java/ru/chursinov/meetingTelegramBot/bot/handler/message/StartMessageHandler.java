@@ -11,7 +11,7 @@ import ru.chursinov.meetingTelegramBot.util.Emoji;
 import ru.chursinov.meetingTelegramBot.service.ReplyMessageService;
 
 /**
- * Handles {@link Message} when {@link BotCondition} is {@link BotCondition#MAIN_MENU}.
+ * Handles {@link Message} when {@link BotCondition} is {@link BotCondition#START_MENU}.
  *
  * Sends reply keyboard with main menu to interact with it.
  */
@@ -27,7 +27,7 @@ public class StartMessageHandler implements MessageHandler{
 
     @Override
     public boolean canHandle(BotCondition botCondition) {
-        return botCondition.equals(BotCondition.MAIN_MENU);
+        return botCondition.equals(BotCondition.START_MENU);
     }
 
     @Override
@@ -41,14 +41,18 @@ public class StartMessageHandler implements MessageHandler{
         return ReplyKeyboardMarkupBuilder.create(chatId)
                 .setText("Привет, " + firstName + "!"
                         + "\n\nДобро пожаловать! "
-                        + "\n\nЧтобы воспользоваться ботом, нажмите нужную кнопку на появившейся клавиатуре. "
-                        + Emoji.MENU)
+                        + "\n\nЭто митинг-бот организации ООО \"Норд Диджитал\"."
+                        + "\n\nЧтобы начать пользоваться ботом необходимо зарегистрироваться."
+                        + "\nДля этого нажмите кнопку \"Зарегистрироваться\" внизу."
+                        + Emoji.MENU
+                        + "\n\nПосле регистрации, владелец бота подтвердит вашу регистрацию. "
+                        + "\nИ можно будет начинать внесение данных.")
                 .row()
-                .button("Заполнить информацию о своей работе")
+                .button("Зарегистрироваться")
                 .endRow()
-                .row()
-                .button("Помощь")
-                .endRow()
+//                .row()
+//                .button("Помощь")
+//                .endRow()
                 .build();
     }
 }

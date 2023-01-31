@@ -85,7 +85,7 @@ public class UpdateReceiver {
 
         switch (userTextMessage) {
             case "/start":
-                botCondition = BotCondition.MAIN_MENU;
+                botCondition = BotCondition.START_MENU;
                 break;
             case "Заполнить информацию о своей работе":
                 botCondition = BotCondition.START_QUESTIONS;

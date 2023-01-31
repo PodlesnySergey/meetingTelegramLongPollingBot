@@ -18,7 +18,7 @@ public class ResetCondition {
     }
 
     public void resetBotCondition(Message message) {
-        BotCondition botCondition = BotCondition.MAIN_MENU;
+        BotCondition botCondition = BotCondition.START_MENU;
         Long userId = message.getFrom().getId();
         botConditionUserContext.setCurrentBotConditionForUserWithId(userId, botCondition);
     }

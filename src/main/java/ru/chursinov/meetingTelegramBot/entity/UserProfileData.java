@@ -25,9 +25,12 @@ public class UserProfileData {
     String date;
     String username;
     long userid;
+    @Column(length = 2048)
     String yesterday;
+    @Column(length = 2048)
     String today;
     String problem;
+    @Column(length = 2048)
     String problem_details;
 
 }

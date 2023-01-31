@@ -4,7 +4,9 @@ package ru.chursinov.meetingTelegramBot.bot;
  * Describes possible conditions for the bot.
  */
 public enum BotCondition {
-    MAIN_MENU,
+    START_MENU,
+    NOT_REGISTER,
+    REGISTERED,
     HELP,
     START_QUESTIONS,
     TODAY,

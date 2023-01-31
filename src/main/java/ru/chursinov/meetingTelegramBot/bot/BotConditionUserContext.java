@@ -15,7 +15,7 @@ public class BotConditionUserContext implements BotConditionObserved{
 
     @Override
     public BotCondition getCurrentBotConditionForUserById(Long userId) {
-        return usersBotCondition.getOrDefault(userId, BotCondition.MAIN_MENU);
+        return usersBotCondition.getOrDefault(userId, BotCondition.START_MENU);
     }
 
     @Override
