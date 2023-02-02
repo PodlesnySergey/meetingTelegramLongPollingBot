@@ -150,6 +150,7 @@ public class UpdateReceiver {
             case "Зарегистрироваться":
                 botCondition = BotCondition.REGISTRATION; //тут нужно добавить обработчик того, что если пользователь уже отправил запрос на регистрацию или уже зарегистрированный снова пытается пройти регистрацию.
                 break;
+            case "/filldata":
             case "Заполнить информацию о своей работе":
                 botCondition = BotCondition.START_QUESTIONS;
                 break;

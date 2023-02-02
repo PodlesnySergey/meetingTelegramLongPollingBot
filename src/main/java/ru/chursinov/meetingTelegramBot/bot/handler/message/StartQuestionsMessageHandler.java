@@ -34,7 +34,7 @@ public class StartQuestionsMessageHandler implements MessageHandler {
 
         Long chatId = message.getChatId();
 
-        if (message.getText().equals("Заполнить информацию о своей работе") || message.getText().equals("/filldata")) {
+        if (message.getText().equals("Заполнить информацию о своей работе") | message.getText().equals("/filldata")) {
             return replyMessageService.getTextMessage(chatId, "Что было сделано вчера?");
         }
 
