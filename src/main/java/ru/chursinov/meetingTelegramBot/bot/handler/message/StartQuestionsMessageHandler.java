@@ -15,7 +15,6 @@ public class StartQuestionsMessageHandler implements MessageHandler {
 
     private final ReplyMessageService replyMessageService;
     private final BotConditionUserContext botConditionUserContext;
-
     private final UserProfileCache userProfileCache;
 
     @Autowired
@@ -35,7 +34,7 @@ public class StartQuestionsMessageHandler implements MessageHandler {
 
         Long chatId = message.getChatId();
 
-        if (message.getText().equals("Заполнить информацию о своей работе")) {
+        if (message.getText().equals("Заполнить информацию о своей работе") || message.getText().equals("/filldata")) {
             return replyMessageService.getTextMessage(chatId, "Что было сделано вчера?");
         }
 
