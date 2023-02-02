@@ -23,8 +23,11 @@ public class UserProfileData {
     int id;
 
     String date;
+
     String username;
+
     long userid;
+
     @Column(length = 2048)
     String yesterday;
     @Column(length = 2048)
@@ -32,5 +35,5 @@ public class UserProfileData {
     String problem;
     @Column(length = 2048)
     String problem_details;
-
 }
+

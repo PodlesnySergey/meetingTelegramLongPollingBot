@@ -7,7 +7,7 @@ import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Message;
 import ru.chursinov.meetingTelegramBot.bot.BotCondition;
 import ru.chursinov.meetingTelegramBot.bot.BotConditionUserContext;
-import ru.chursinov.meetingTelegramBot.bot.UserDataCache;
+import ru.chursinov.meetingTelegramBot.bot.UserProfileCache;
 import ru.chursinov.meetingTelegramBot.bot.keyboard.InlineKeyboardMarkupBuilder;
 import ru.chursinov.meetingTelegramBot.entity.UserProfileData;
 import ru.chursinov.meetingTelegramBot.util.Emoji;
@@ -17,12 +17,12 @@ import ru.chursinov.meetingTelegramBot.util.Emoji;
 public class TodayQuestionHandler implements MessageHandler{
 
     private final BotConditionUserContext botConditionUserContext;
-    private final UserDataCache userDataCache;
+    private final UserProfileCache userProfileCache;
 
     @Autowired
-    public TodayQuestionHandler(BotConditionUserContext botConditionUserContext, UserDataCache userDataCache) {
+    public TodayQuestionHandler(BotConditionUserContext botConditionUserContext, UserProfileCache userProfileCache) {
         this.botConditionUserContext = botConditionUserContext;
-        this.userDataCache = userDataCache;
+        this.userProfileCache = userProfileCache;
     }
 
     @Override
@@ -38,9 +38,9 @@ public class TodayQuestionHandler implements MessageHandler{
         BotCondition botCondition = BotCondition.PROBLEMS;
         Long userId = message.getFrom().getId();
 
-        UserProfileData userProfileData = userDataCache.getUserProfileData(userId);
+        UserProfileData userProfileData = userProfileCache.getUserProfileData(userId);
         userProfileData.setToday(message.getText());
-        userDataCache.saveUserProfileData(userId, userProfileData);
+        userProfileCache.saveUserProfileData(userId, userProfileData);
 
         botConditionUserContext.setCurrentBotConditionForUserWithId(userId, botCondition);
 

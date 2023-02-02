@@ -5,8 +5,8 @@ package ru.chursinov.meetingTelegramBot.bot;
  */
 public enum BotCondition {
     START_MENU,
-    NOT_REGISTER,
-    REGISTERED,
+    REGISTRATION,
+    REGISTRATION_WAIT,
     HELP,
     START_QUESTIONS,
     TODAY,

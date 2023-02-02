@@ -6,7 +6,7 @@ import org.telegram.telegrambots.meta.api.methods.BotApiMethod;
 import org.telegram.telegrambots.meta.api.objects.Message;
 import ru.chursinov.meetingTelegramBot.bot.BotCondition;
 import ru.chursinov.meetingTelegramBot.bot.BotConditionUserContext;
-import ru.chursinov.meetingTelegramBot.bot.UserDataCache;
+import ru.chursinov.meetingTelegramBot.bot.UserProfileCache;
 import ru.chursinov.meetingTelegramBot.entity.UserProfileData;
 import ru.chursinov.meetingTelegramBot.service.ReplyMessageService;
 
@@ -16,14 +16,14 @@ public class ProblemsDetailHandler implements MessageHandler{
     private final ReplyMessageService replyMessageService;
     private final BotConditionUserContext botConditionUserContext;
     private final SaveAnswers saveAnswers;
-    private final UserDataCache userDataCache;
+    private final UserProfileCache userProfileCache;
 
     @Autowired
-    public ProblemsDetailHandler(ReplyMessageService replyMessageService, BotConditionUserContext botConditionUserContext, SaveAnswers saveAnswers, UserDataCache userDataCache) {
+    public ProblemsDetailHandler(ReplyMessageService replyMessageService, BotConditionUserContext botConditionUserContext, SaveAnswers saveAnswers, UserProfileCache userProfileCache) {
         this.replyMessageService = replyMessageService;
         this.botConditionUserContext = botConditionUserContext;
         this.saveAnswers = saveAnswers;
-        this.userDataCache = userDataCache;
+        this.userProfileCache = userProfileCache;
     }
 
     @Override
@@ -38,9 +38,9 @@ public class ProblemsDetailHandler implements MessageHandler{
         BotCondition botCondition = BotCondition.PROFILE_FILLED;
         Long userId = message.getFrom().getId();
 
-        UserProfileData userProfileData = userDataCache.getUserProfileData(userId);
+        UserProfileData userProfileData = userProfileCache.getUserProfileData(userId);
         userProfileData.setProblem_details(message.getText());
-        userDataCache.saveUserProfileData(userId, userProfileData);
+        userProfileCache.saveUserProfileData(userId, userProfileData);
 
         botConditionUserContext.setCurrentBotConditionForUserWithId(userId, botCondition);
 

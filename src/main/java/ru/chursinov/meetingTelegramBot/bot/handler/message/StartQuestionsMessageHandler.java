@@ -6,7 +6,7 @@ import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Message;
 import ru.chursinov.meetingTelegramBot.bot.BotCondition;
 import ru.chursinov.meetingTelegramBot.bot.BotConditionUserContext;
-import ru.chursinov.meetingTelegramBot.bot.UserDataCache;
+import ru.chursinov.meetingTelegramBot.bot.UserProfileCache;
 import ru.chursinov.meetingTelegramBot.entity.UserProfileData;
 import ru.chursinov.meetingTelegramBot.service.ReplyMessageService;
 
@@ -16,13 +16,13 @@ public class StartQuestionsMessageHandler implements MessageHandler {
     private final ReplyMessageService replyMessageService;
     private final BotConditionUserContext botConditionUserContext;
 
-    private final UserDataCache userDataCache;
+    private final UserProfileCache userProfileCache;
 
     @Autowired
-    public StartQuestionsMessageHandler(ReplyMessageService replyMessageService, BotConditionUserContext botConditionUserContext, UserDataCache userDataCache) {
+    public StartQuestionsMessageHandler(ReplyMessageService replyMessageService, BotConditionUserContext botConditionUserContext, UserProfileCache userProfileCache) {
         this.replyMessageService = replyMessageService;
         this.botConditionUserContext = botConditionUserContext;
-        this.userDataCache = userDataCache;
+        this.userProfileCache = userProfileCache;
     }
 
     @Override
@@ -42,9 +42,9 @@ public class StartQuestionsMessageHandler implements MessageHandler {
         BotCondition botCondition = BotCondition.TODAY;
         Long userId = message.getFrom().getId();
 
-        UserProfileData userProfileData = userDataCache.getUserProfileData(userId);
+        UserProfileData userProfileData = userProfileCache.getUserProfileData(userId);
         userProfileData.setYesterday(message.getText());
-        userDataCache.saveUserProfileData(userId, userProfileData);
+        userProfileCache.saveUserProfileData(userId, userProfileData);
 
         botConditionUserContext.setCurrentBotConditionForUserWithId(userId, botCondition);
 

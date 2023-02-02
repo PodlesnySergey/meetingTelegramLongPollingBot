@@ -7,7 +7,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Component
-public class UserDataCache implements DataCache{
+public class UserProfileCache implements DataCache{
     private final Map<Long, UserProfileData> usersProfileData = new HashMap<>();
 
     @Override
