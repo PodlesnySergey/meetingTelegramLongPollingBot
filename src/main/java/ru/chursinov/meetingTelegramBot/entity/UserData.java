@@ -25,7 +25,7 @@ public class UserData {
 
     private String realLastNameTg;
 
-    private String registeredAt;
+    private Timestamp registeredAt;
 
     private Boolean isActive;
 

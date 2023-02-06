@@ -5,6 +5,8 @@ import org.springframework.stereotype.Service;
 import ru.chursinov.meetingTelegramBot.entity.UserProfileData;
 import ru.chursinov.meetingTelegramBot.repository.UsersProfileRepo;
 
+import java.sql.Timestamp;
+
 @Service
 public class UsersProfileDataService {
 
@@ -19,7 +21,7 @@ public class UsersProfileDataService {
         usersProfileRepo.save(userProfileData);
     }
 
-    public UserProfileData getUserAnswer(long id, String date) {
+    public UserProfileData getUserAnswer(long id, Timestamp date) {
         return usersProfileRepo.findByUseridAndDate(id, date);
     }
 }

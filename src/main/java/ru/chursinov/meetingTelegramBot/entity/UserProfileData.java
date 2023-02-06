@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.experimental.FieldDefaults;
 
 import javax.persistence.*;
+import java.sql.Timestamp;
 
 /**
  * Данные анкеты пользователя
@@ -22,7 +23,7 @@ public class UserProfileData {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     int id;
 
-    String date;
+    Timestamp date;
 
     String username;
 
