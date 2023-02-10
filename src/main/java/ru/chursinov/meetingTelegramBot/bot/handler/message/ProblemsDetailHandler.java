@@ -10,6 +10,7 @@ import ru.chursinov.meetingTelegramBot.bot.UserProfileCache;
 import ru.chursinov.meetingTelegramBot.entity.UserProfileData;
 import ru.chursinov.meetingTelegramBot.service.ReplyMessageService;
 
+
 @Component
 public class ProblemsDetailHandler implements MessageHandler{
 
@@ -17,7 +18,6 @@ public class ProblemsDetailHandler implements MessageHandler{
     private final BotConditionUserContext botConditionUserContext;
     private final SaveAnswers saveAnswers;
     private final UserProfileCache userProfileCache;
-
     @Autowired
     public ProblemsDetailHandler(ReplyMessageService replyMessageService, BotConditionUserContext botConditionUserContext, SaveAnswers saveAnswers, UserProfileCache userProfileCache) {
         this.replyMessageService = replyMessageService;
@@ -25,6 +25,7 @@ public class ProblemsDetailHandler implements MessageHandler{
         this.saveAnswers = saveAnswers;
         this.userProfileCache = userProfileCache;
     }
+
 
     @Override
     public boolean canHandle(BotCondition botCondition) {

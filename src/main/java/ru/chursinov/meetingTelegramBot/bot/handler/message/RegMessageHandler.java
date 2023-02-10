@@ -47,27 +47,17 @@ public class RegMessageHandler implements MessageHandler {
         long userId = message.getFrom().getId();
 
         if (!userCheck.isExist(userId)) {
-
             if (message.getText().equals("Зарегистрироваться") || message.getText().equals("/registration")) {
                 return replyMessageService.getTextMessage(chatId, "Пожалуйста, введите имя и фамилию (через пробел).");
             }
 
             BotCondition botCondition = BotCondition.REGISTRATION_WAIT;
-//            Long userId = message.getFrom().getId();
-
             UserData user = userRegCache.getUserRegCache(userId);
             user.setChatId(message.getChatId());
             user.setFirstNameTg(message.getFrom().getFirstName());
             user.setLastNameTg(message.getFrom().getLastName());
             user.setUserNameTg(message.getFrom().getUserName());
-
             userRegCache.setUserRegCache(userId, user);
-
-
-//        userProfileData.setYesterday(message.getText());
-//        userDataCache.saveUserProfileData(userId, userProfileData);
-
-
             botConditionUserContext.setCurrentBotConditionForUserWithId(userId, botCondition);
 
             saveRegData.saveUserRegData(userId, message.getText());

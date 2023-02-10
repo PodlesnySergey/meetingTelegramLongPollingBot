@@ -61,10 +61,17 @@ public class QueryHandler implements CallbackQueryHandler{
 
                 String username = callbackQuery.getFrom().getUserName();
                 saveAnswers.saveUserAnswers(chatId, username);
+
+                // Here you need to add code to send messages to the general group
+
                 return replyMessageService.getEditedTextMessage(chatId, messageId,
                         String.join("\n\n",
                         "Хорошо, когда нет проблем " + Emoji.SMILE,
                         "Ответы сохранены. Хорошего дня!"));
+
+
+
+
             default:
                 return replyMessageService.getTextMessage(chatId, "Не удалось обработать ответ");
         }

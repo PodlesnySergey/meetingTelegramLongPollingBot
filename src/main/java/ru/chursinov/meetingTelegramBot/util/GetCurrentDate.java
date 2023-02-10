@@ -8,10 +8,10 @@ import java.time.format.DateTimeFormatter;
 
 @Component
 public class GetCurrentDate {
-    public Timestamp getDate() {
-//        LocalDate localDate = LocalDate.now();
-//        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
-//        return localDate.format(formatter);
-        return (new Timestamp(System.currentTimeMillis()));
+    public String getDate() {
+        LocalDate localDate = LocalDate.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
+        return localDate.format(formatter);
+//        return (new Timestamp(System.currentTimeMillis()));
     }
 }

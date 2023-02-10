@@ -12,7 +12,6 @@ import ru.chursinov.meetingTelegramBot.service.ReplyMessageService;
 
 @Component
 public class StartQuestionsMessageHandler implements MessageHandler {
-
     private final ReplyMessageService replyMessageService;
     private final BotConditionUserContext botConditionUserContext;
     private final UserProfileCache userProfileCache;
@@ -40,7 +39,6 @@ public class StartQuestionsMessageHandler implements MessageHandler {
 
         BotCondition botCondition = BotCondition.TODAY;
         Long userId = message.getFrom().getId();
-
         UserProfileData userProfileData = userProfileCache.getUserProfileData(userId);
         userProfileData.setYesterday(message.getText());
         userProfileCache.saveUserProfileData(userId, userProfileData);

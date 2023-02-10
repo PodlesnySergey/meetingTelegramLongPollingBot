@@ -2,6 +2,7 @@ package ru.chursinov.meetingTelegramBot.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import ru.chursinov.meetingTelegramBot.entity.UserData;
 import ru.chursinov.meetingTelegramBot.entity.UserProfileData;
 import ru.chursinov.meetingTelegramBot.repository.UsersProfileRepo;
 
@@ -21,7 +22,7 @@ public class UsersProfileDataService {
         usersProfileRepo.save(userProfileData);
     }
 
-    public UserProfileData getUserAnswer(long id, Timestamp date) {
-        return usersProfileRepo.findByUseridAndDate(id, date);
+    public UserProfileData getUserAnswer(UserData user, String fillDate) {
+        return usersProfileRepo.findByUserAndFillDate(user, fillDate);
     }
 }

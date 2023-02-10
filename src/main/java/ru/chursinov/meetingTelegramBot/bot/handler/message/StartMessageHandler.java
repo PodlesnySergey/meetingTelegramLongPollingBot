@@ -46,7 +46,6 @@ public class StartMessageHandler implements MessageHandler{
                 } else if (userCheck.isActive(userId)) {
                     return getMainMenuReg(message.getChatId(), message.getChat().getFirstName());
                 } else {
-//            return replyMessageService.getTextMessage(update.getMessage().getChatId(), "Ваша регистрация еще не подтверждена.\n"
                     return replyMessageService.getTextMessage(message.getChatId(), "Ваша регистрация еще не подтверждена.\n"
                     + "Ожидайте подтверждения от владельца бота.");
                 }

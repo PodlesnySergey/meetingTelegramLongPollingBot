@@ -7,7 +7,9 @@ import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Message;
 import ru.chursinov.meetingTelegramBot.bot.BotCondition;
 import ru.chursinov.meetingTelegramBot.bot.ResetCondition;
+import ru.chursinov.meetingTelegramBot.entity.UserData;
 import ru.chursinov.meetingTelegramBot.entity.UserProfileData;
+import ru.chursinov.meetingTelegramBot.service.UserDataService;
 import ru.chursinov.meetingTelegramBot.service.UsersProfileDataService;
 import ru.chursinov.meetingTelegramBot.util.Emoji;
 import ru.chursinov.meetingTelegramBot.util.GetCurrentDate;
@@ -18,12 +20,14 @@ public class ShowProfileHandler implements MessageHandler {
     private final UsersProfileDataService usersProfileDataService;
     private final GetCurrentDate getCurrentDate;
     private final ResetCondition resetCondition;
+    private final UserDataService userDataService;
 
     @Autowired
-    public ShowProfileHandler(UsersProfileDataService usersProfileDataService, GetCurrentDate getCurrentDate, ResetCondition resetCondition) {
+    public ShowProfileHandler(UsersProfileDataService usersProfileDataService, GetCurrentDate getCurrentDate, ResetCondition resetCondition, UserDataService userDataService) {
         this.usersProfileDataService = usersProfileDataService;
         this.getCurrentDate = getCurrentDate;
         this.resetCondition = resetCondition;
+        this.userDataService = userDataService;
     }
 
     @Override
@@ -35,8 +39,9 @@ public class ShowProfileHandler implements MessageHandler {
     public BotApiMethod<Message> handle(Message message) {
 
         Long userId = message.getFrom().getId();
+        UserData user = userDataService.getUser(userId);
 
-        UserProfileData answer = usersProfileDataService.getUserAnswer(userId, getCurrentDate.getDate());
+        UserProfileData answer = usersProfileDataService.getUserAnswer(user, getCurrentDate.getDate());
         resetCondition.resetBotCondition(message);
 
         if (answer != null) {
@@ -45,7 +50,7 @@ public class ShowProfileHandler implements MessageHandler {
                             "%nПланы на сегодня: %n%s%n " +
                             "%nЕсть ли проблемы: %n%s%n " +
                             "%nОписание проблем: %n%s%n",
-                    "Ваши ответы " + Emoji.CALENDAR + " " + answer.getDate(),
+                    "Ваши ответы " + Emoji.CALENDAR + " " + answer.getFillDate(),
                     answer.getYesterday(),
                     answer.getToday(),
                     answer.getProblem(),

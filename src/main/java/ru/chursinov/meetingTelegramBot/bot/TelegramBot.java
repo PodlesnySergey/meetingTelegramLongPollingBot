@@ -3,19 +3,22 @@ package ru.chursinov.meetingTelegramBot.bot;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.scheduling.annotation.EnableScheduling;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.meta.api.methods.BotApiMethod;
 import org.telegram.telegrambots.meta.api.methods.PartialBotApiMethod;
-import org.telegram.telegrambots.meta.api.methods.send.SendDocument;
-import org.telegram.telegrambots.meta.api.methods.send.SendPhoto;
+import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
+import ru.chursinov.meetingTelegramBot.util.Emoji;
 
 import java.io.Serializable;
 
 @Slf4j
 @Component
+@EnableScheduling
 public class TelegramBot extends TelegramLongPollingBot {
 
     @Getter
@@ -75,4 +78,16 @@ public class TelegramBot extends TelegramLongPollingBot {
         }
 
     }
+
+    @Scheduled(cron = "0 * * * * *")
+    private void sendAds(){
+
+        try {
+            execute(new SendMessage("-1001877192947", "Test message"));
+        } catch (TelegramApiException e) {
+            throw new RuntimeException(e);
+        }
+
+    }
+
 }

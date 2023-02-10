@@ -61,7 +61,10 @@
 		</dependency>
 
 
-<!--		&lt;!&ndash; https://mvnrepository.com/artifact/org.telegram/telegrambotsextensions &ndash;&gt;-->
+
+
+
+		<!--		&lt;!&ndash; https://mvnrepository.com/artifact/org.telegram/telegrambotsextensions &ndash;&gt;-->
 <!--		<dependency>-->
 <!--			<groupId>org.telegram</groupId>-->
 <!--			<artifactId>telegrambotsextensions</artifactId>-->

@@ -11,15 +11,11 @@ import ru.chursinov.meetingTelegramBot.bot.handler.BotConditionHandler;
 import ru.chursinov.meetingTelegramBot.bot.handler.callbackquery.QueryHandler;
 import ru.chursinov.meetingTelegramBot.bot.handler.message.UserCheck;
 import ru.chursinov.meetingTelegramBot.service.ReplyMessageService;
-
 import java.io.Serializable;
-
-//import static jdk.nashorn.internal.runtime.Debug.id;
 
 @Slf4j
 @Component
 public class UpdateReceiver {
-
     private final BotConditionHandler botConditionHandler;
     private final BotConditionUserContext botConditionUserContext;
     private final QueryHandler callbackQueryHandler;

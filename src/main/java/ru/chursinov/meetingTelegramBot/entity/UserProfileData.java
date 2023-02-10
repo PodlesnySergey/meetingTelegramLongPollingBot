@@ -23,11 +23,11 @@ public class UserProfileData {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     int id;
 
-    Timestamp date;
+    String fillDate;
 
-    String username;
-
-    long userid;
+//    String username;
+//
+//    long userId;
 
     @Column(length = 2048)
     String yesterday;
@@ -36,5 +36,9 @@ public class UserProfileData {
     String problem;
     @Column(length = 2048)
     String problem_details;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id")
+    UserData user;
 }
 
